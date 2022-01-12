@@ -37,10 +37,10 @@ function randerimg(userinfo) {
     if (userinfo.user_pic !== null) {
         $('.userimg').hide()
         $('.layui-nav-img').show()
-        $('.layui-nav-img').url = user_pic
+        $('.layui-nav-img').url = userinfo.user_pic
     } else {
         $('.userimg').show()
-        $('.userimg').html((userinfo.username)[0].toUpperCase())
+        $('.userimg').html((name)[0].toUpperCase())
         $('.layui-nav-img').hide()
     }
 }
