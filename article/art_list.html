@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入layui的样式 -->
+    <link rel="stylesheet" href="../assets/lib/layui/css/layui.css">
+    <!-- 导入自己的css样式 -->
+    <link rel="stylesheet" href="../assets/css/art_list.css">
+</head>
+
+<body>
+    <!-- 卡片区域 -->
+    <div class="layui-card">
+        <div class="layui-card-header">文章列表</div>
+        <div class="layui-card-body">
+            <!-- 筛选区域 -->
+            <form class="layui-form layui-form-pane" id="form_search">
+                <!-- 分类 -->
+                <div class="layui-form-item layui-inline">
+                    <label class="layui-form-label">分类</label>
+                    <div class="layui-input-block">
+                        <!-- 文章分类的下拉菜单 -->
+                        <select name="cate_id">
+                            <option value="">请选择分类</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- 状态 -->
+                <div class="layui-form-item layui-inline">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <!-- 筛选状态的下拉菜单 -->
+                        <select name="state">
+                            <option value="">请选择状态</option>
+                            <option value="已发布">已发布</option>
+                            <option value="草稿">草稿</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- 筛选按钮 -->
+                <div class="layui-form-item layui-inline">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">筛选</button>
+                </div>
+                <!-- 重置按钮 -->
+                <div class="layui-form-item layui-inline">
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </form>
+
+            <!-- 表格区域 -->
+            <table class="layui-table">
+                <colgroup>
+                    <col>
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                    <col width="200">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>文章标题</th>
+                        <th>分类</th>
+                        <th>发表时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+            <!-- 分页区域 -->
+            <div id="page-box"></div>
+        </div>
+    </div>
+    <!-- 表格数据模版 -->
+    <script type="text/html" id="atclist">
+        {{each data}}
+        <tr>
+            <td>{{$value.title}}</td>
+            <td>{{$value.cate_name}}</td>
+            <td>{{$value.pub_date}}</td>
+            <td>{{$value.state}}</td>
+            <td>
+                <button type="button" class="layui-btn layui-btn-xs btn-edit" data-id="{{$value.Id}}">编辑</button>
+                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete" data-id="{{$value.Id}}">删除</button>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+
+    <!-- 文章分类的下拉菜单模版 -->
+    <script type="text/html" id="typelist">
+        <option value="">请选择分类</option>
+        {{each data}}
+        <option value="{{$value.Id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
+
+    <!-- 导入layui的js文件 -->
+    <script src="../assets/lib/layui/layui.all.js"></script>
+    <!-- 导入jquery -->
+    <script src="../assets/lib/jquery.js"></script>
+    <!-- 导入baseapi文件 -->
+    <script src="../assets/js/baseapi.js"></script>
+    <!-- 导入模版引擎 -->
+    <script src="../assets/lib/template-web.js"></script>
+    <!-- 导入自己的js文件 -->
+    <script src="../assets/js/art_list.js"></script>
+</body>
+
+</html>
